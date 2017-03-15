@@ -20,7 +20,7 @@ public class BaseEntity implements Serializable {
 	  	@Column(name = "VCLIENT_IP")
 	    private String clientIp;
 
-	    @Column(name = "NIS_DELETED", nullable = false, columnDefinition = "Number(1,0) default 0")
+	    @Column(name = "NIS_DELETED", nullable = false)
 	    private Boolean isDeleted = Boolean.FALSE;
 	
 	    @Column(name="DCREATE_DATE")
