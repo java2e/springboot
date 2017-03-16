@@ -4,9 +4,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -33,8 +37,9 @@ public class Users extends BaseEntity {
 	@Column(name="VSURNAME")
 	private String surname;
 	
-	@Column(name="VLOCATION_ID")
-	private int locationId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "NLOCATION_ID", referencedColumnName = "ID", nullable = false,foreignKey = @ForeignKey(name = "FK_USER_REF_LOCATION"))
+	private Location location;
 	
 	@Column(name="BSTATE")
 	private boolean state;
