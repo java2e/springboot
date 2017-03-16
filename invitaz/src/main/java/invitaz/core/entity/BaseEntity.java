@@ -1,4 +1,4 @@
-package invitaz.core;
+package invitaz.core.entity;
 
 import java.io.Serializable;
 import java.sql.Date;

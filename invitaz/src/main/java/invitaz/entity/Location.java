@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import invitaz.core.BaseEntity;
+import invitaz.core.entity.BaseEntity;
 import lombok.Setter;
 
 import lombok.Getter;

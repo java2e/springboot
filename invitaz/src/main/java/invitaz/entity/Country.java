@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import invitaz.core.BaseEntity;
+import invitaz.core.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 

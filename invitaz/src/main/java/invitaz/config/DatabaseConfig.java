@@ -1,19 +1,25 @@
 package invitaz.config;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import java.util.Properties;
 
+import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
@@ -35,8 +41,49 @@ public class DatabaseConfig {
 		
 	}
 	
+	@Bean
+    @Primary
+    public EntityManagerFactory entityManagerFactoryForJPA()
+    {
+	LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+	try
+	{
+	    em.setDataSource(dataSource);
+	    em.setPackagesToScan(env.getProperty("entitymanager.packagesToScan"));
+	    JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+	    em.setJpaVendorAdapter(vendorAdapter);
+	    em.setJpaProperties(hibernateProperties());
+	    em.setPersistenceUnitName("PERSISTENCE_JPA");
+	    em.setJpaDialect(new HibernateJpaDialect());
+	    em.afterPropertiesSet();
+	    //LOGGER.info("entityManagerFactoryForJPA|Hibernate is initialized with the given properties in hibernateProperties method");
+	} catch (Exception e)
+	{
 	
-	  /**
+	}
+	return em.getObject();
+    }
+
+	
+	
+	  private Properties hibernateProperties() {
+
+		    // Hibernate properties
+		    Properties properties = new Properties();
+		    properties.put(
+		        "hibernate.dialect", 
+		        env.getProperty("hibernate.dialect"));
+		    properties.put(
+		        "hibernate.show_sql", 
+		        env.getProperty("hibernate.show_sql"));
+		    properties.put(
+		        "hibernate.hbm2ddl.auto", 
+		        env.getProperty("hibernate.hbm2ddl.auto"));
+
+		  return properties;
+	}
+
+	/**
 	   * Declare the JPA entity manager factory.
 	   */
 	  @Bean
