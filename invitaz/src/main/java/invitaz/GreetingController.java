@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import invitaz.service.CountryService;
 
-@RestController
+
 public class GreetingController {
 
 	
@@ -20,13 +20,11 @@ public class GreetingController {
 	private CountryService countryService;
 	
 	
-	@RequestMapping("/greeting")
 	public Greeting greeting(@RequestParam(value="name",defaultValue="World")String name)
 	{
 		return new Greeting(counter.incrementAndGet(),String.format(template, name));
 	}
 
-	@RequestMapping("/country")
     public String getCountry(@RequestParam(value="id",defaultValue="1")Long id)
 	{
 		return countryService.getCountryName(id);

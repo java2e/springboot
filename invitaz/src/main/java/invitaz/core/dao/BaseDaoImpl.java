@@ -2,6 +2,7 @@ package invitaz.core.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -62,5 +63,19 @@ public class BaseDaoImpl<E extends BaseEntity> implements Serializable {
 		}
 		return null;
 	}
+	
+	  /**
+     * Retrieves all entities without any criteria , Skips soft deleted entities
+     * 
+     * @return List of {@link BaseEntity}
+     */
+    public List<E> getEntityList()
+    {
+	beType = (Class<E>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+	LOGGER.info(beType.getSimpleName());
+	String query = "SELECT BE FROM " + beType.getSimpleName() + " BE WHERE BE.isDeleted is false";
+	return entityManager.createQuery(query).getResultList();
+    }
+
 
 }
