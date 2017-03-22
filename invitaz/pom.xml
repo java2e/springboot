@@ -16,6 +16,8 @@
 		<javax.mail.version>1.4.7</javax.mail.version>
 		<jdk.version>1.8</jdk.version>
 		<lombok.version>1.16.10</lombok.version>
+		<dozer.version>5.5.1</dozer.version>
+		<reflections.version>0.9.10</reflections.version>
 	</properties>
     
 
@@ -147,6 +149,66 @@
 		  <artifactId>euromsg-client</artifactId>
 		  <version>1.0.1</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>${dozer.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>${reflections.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+		
+		<!-- LOG4J2 -->
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-web</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jcl</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+
+
+
+					<dependency>
+    				<groupId>org.slf4j</groupId>
+    			<artifactId>slf4j-log4j12</artifactId>
+   				 <version>1.7.24</version>
+			</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jul</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		
+		
     </dependencies>
 
 
@@ -184,12 +246,7 @@
 							<arguments>install</arguments>
 						</configuration>
 					</execution>
-					<execution>
-						<id>webpack build</id>
-						<goals>
-							<goal>webpack</goal>
-						</goals>
-					</execution>
+				
 				</executions>
 			</plugin>
 		</plugins>
