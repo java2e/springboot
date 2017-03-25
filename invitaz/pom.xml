@@ -144,12 +144,7 @@
 			<version>${javax.mail.version}</version>
 		</dependency>
 		
-		<dependency>
-		  <groupId>com.euromsg</groupId>
-		  <artifactId>euromsg-client</artifactId>
-		  <version>1.0.1</version>
-		</dependency>
-		
+	
 		<dependency>
 			<groupId>net.sf.dozer</groupId>
 			<artifactId>dozer</artifactId>
