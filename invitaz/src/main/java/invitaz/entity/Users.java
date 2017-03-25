@@ -37,9 +37,6 @@ public class Users extends BaseEntity {
 	@Column(name="VSURNAME")
 	private String surname;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "NLOCATION_ID", referencedColumnName = "ID", nullable = false,foreignKey = @ForeignKey(name = "FK_USER_REF_LOCATION"))
-	private Location location;
 	
 	@Column(name="BSTATE")
 	private boolean state;

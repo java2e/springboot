@@ -25,7 +25,7 @@ public class GreetingController {
 		return new Greeting(counter.incrementAndGet(),String.format(template, name));
 	}
 
-	//@RequestMapping(path="/country")
+	@RequestMapping(path="/country")
     public String getCountry(@RequestParam(value="id",defaultValue="1")Long id)
 	{
 		return countryService.getCountryName(id);

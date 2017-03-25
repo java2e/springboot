@@ -12,6 +12,8 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import invitaz.core.entity.BaseEntity;
+import invitaz.core.utils.EnrichEntity;
+import invitaz.entity.Users;
 
 @Component
 @SuppressWarnings(value = { "rawtypes", "unchecked", "serial" })
@@ -77,5 +79,19 @@ public class BaseDaoImpl<E extends BaseEntity> implements Serializable {
 	return entityManager.createQuery(query).getResultList();
     }
 
+    
+    public E saveEntity(E baseEntity)
+    {
+	EnrichEntity.fillBaseEntityColums(baseEntity);
+	beType = (Class<E>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+	entityManager.persist(baseEntity);
+	entityManager.flush();
+	LOGGER.info("Entity persisted:" + baseEntity);
+	return baseEntity;
+    }
+    
+    
+    
+    
 
 }
